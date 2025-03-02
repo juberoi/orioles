@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Orioles Math Game&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#question {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#score {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Baltimore Orioles Math Game&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="score"&gt;Score: 0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="question"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="number" id="answer" placeholder="Enter your answer" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="checkAnswer()"&gt;Submit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="result"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="generateQuestion()"&gt;Next Question&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const players = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Adley Rutschman", number: 35 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Gary Sánchez", number: 99 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Ryan Mountcastle", number: 6 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Ryan O'Hearn", number: 32 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Jackson Holliday", number: 7 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Gunnar Henderson", number: 2 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Jordan Westburg", number: 11 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Ramón Urías", number: 29 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Jorge Mateo", number: 3 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Colton Cowser", number: 17 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Heston Kjerstad", number: 13 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Cedric Mullins", number: 31 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Tyler O'Neill", number: 9 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Zach Eflin", number: 24 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Dean Kremer", number: 64 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Charlie Morton", number: 50 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Grayson Rodriguez", number: 30 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ name: "Tomoyuki Sugano", number: 19 }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let score = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let correctAnswer = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentOperation = "";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function getRandomPlayer() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return players[Math.floor(Math.random() * players.length)];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function generateQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const player1 = getRandomPlayer();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const player2 = getRandomPlayer();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Math.random() &gt; 0.5) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Multiplication</p>
+<p class="p1"><span class="Apple-converted-space">                </span>correctAnswer = player1.number * player2.number;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentOperation = `Multiply ${player1.name} (#${player1.number}) x ${player2.name} (#${player2.number})`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Division (Ensure clean division)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let larger = player1.number &gt; player2.number ? player1 : player2;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let smaller = player1.number &gt; player2.number ? player2 : player1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>correctAnswer = larger.number % smaller.number === 0 ? larger.number / smaller.number : Math.floor(larger.number / smaller.number);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentOperation = `Divide ${larger.name} (#${larger.number}) ÷ ${smaller.name} (#${smaller.number}) (rounded down if needed)`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("question").innerText = currentOperation;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("result").innerText = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("answer").value = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function checkAnswer() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const userAnswer = parseInt(document.getElementById("answer").value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (userAnswer === correctAnswer) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("result").innerText = "Correct! You earned a point!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>score++;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById("result").innerText = `Incorrect. The correct answer was ${correctAnswer}.`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("score").innerText = `Score: ${score}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>generateQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
